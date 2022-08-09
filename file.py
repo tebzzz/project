@@ -10,7 +10,7 @@ ohlcv = exchange.fetch_ohlcv('BTCUSDT', limit=1)
 btc_price = ohlcv[0][4]
 
 #gets current time and a random ID 
-now = datetime.now()
+now = datetime.now().isoformat()
 id = random.randint(10000000,99999999)
 
 #connecting to kafka producer

@@ -20,15 +20,16 @@ producer = KafkaProducer(
     ssl_cafile="ca.pem",
     ssl_certfile="service.cert",
     ssl_keyfile="service.key",
-    value_serializer=lambda v: json.dumps(v).encode('ascii')
+    key_serializer=lambda v: json.dumps(v).encode('utf-8'),
+    value_serializer=lambda v: json.dumps(v).encode('utf-8')
 )
 
 #send message to topic 
 producer.send(
  'btcprice',
+ key = str(id),
  value=
     {
-    "TXN_ID " : str(id),
     "TIME": str(now),
     "BTC_PRICE": btc_price,
     }
